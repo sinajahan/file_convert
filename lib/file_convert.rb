@@ -1,24 +1,30 @@
 require 'rubygems'
 require 'google/api_client'
 require 'launchy'
-
-# Get your credentials from the APIs Console
-CLIENT_ID = '***'
-CLIENT_SECRET = '***'
-OAUTH_SCOPE = 'https://www.googleapis.com/auth/drive'
-REDIRECT_URI = 'urn:ietf:wg:oauth:2.0:oob'
+require 'yaml'
 
 class FileConvert
+
+  def self.read_config
+    config = YAML.load_file('config/config.yml')
+    @client_id = config['CLIENT_ID']
+    @client_secret = config['CLIENT_SECRET']
+    @oauth_scope = config['OAUTH_SCOPE']
+    @redirect_uri = config['REDIRECT_URI']
+  end
+
   def self.to_txt
+    read_config
+
 # Create a new API client & load the Google Drive API
     client = Google::APIClient.new
     drive = client.discovered_api('drive', 'v2')
 
 # Request authorization
-    client.authorization.client_id = CLIENT_ID
-    client.authorization.client_secret = CLIENT_SECRET
-    client.authorization.scope = OAUTH_SCOPE
-    client.authorization.redirect_uri = REDIRECT_URI
+    client.authorization.client_id = @client_id
+    client.authorization.client_secret = @client_secret
+    client.authorization.scope = @oauth_scope
+    client.authorization.redirect_uri = @redirect_uri
 
     uri = client.authorization.authorization_uri
     Launchy.open(uri)
