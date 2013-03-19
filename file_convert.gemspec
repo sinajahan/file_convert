@@ -10,5 +10,6 @@ Gem::Specification.new do |s|
   s.homepage    =
     'http://rubygems.org/gems/file_convert'
   s.add_dependency('google-api-client', '~> 0.6.2')
+  s.add_dependency('mime-types', '~> 1.21')
   s.add_development_dependency('rspec')
 end

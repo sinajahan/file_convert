@@ -1,6 +1,7 @@
 require 'google/api_client'
 require 'launchy'
 require 'yaml'
+require 'mime/types'
 
 class Drive
   def initialize
@@ -33,11 +34,12 @@ class Drive
   def txt_url(file_path)
     # Insert a file
     file = @drive.files.insert.request_schema.new({
-                                                    title: 'resume.pdf',
+                                                    title: file_path,
                                                     description: 'A test resume document',
                                                   })
 
-    media = Google::APIClient::UploadIO.new(file_path, 'application/pdf')
+    mime = MIME::Types.type_for(file_path).first.to_s
+    media = Google::APIClient::UploadIO.new(file_path, mime)
 
 
     result = @client.execute(
