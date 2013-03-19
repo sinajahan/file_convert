@@ -41,6 +41,7 @@ class Drive
     mime = MIME::Types.type_for(file_path).first.to_s
     media = Google::APIClient::UploadIO.new(file_path, mime)
 
+    needs_ocr = mime == 'application/pdf'
 
     result = @client.execute(
       :api_method => @drive.files.insert,
@@ -49,10 +50,10 @@ class Drive
       :parameters => {
         'uploadType' => 'multipart',
         convert: true,
-        ocr: true,
-        ocrLanguage: :en,
-        useContentAsIndexableText: true,
-        'alt' => 'json'})
+        ocr: (true if needs_ocr),
+        ocrLanguage: (:en if needs_ocr),
+        useContentAsIndexableText: (true if needs_ocr),
+        'alt' => 'json'}.reject{ |k,v| v.nil? })
 
     # Pretty print the API result
     jj result.data.to_hash
