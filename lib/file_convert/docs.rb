@@ -2,10 +2,10 @@ require 'gdata/client'
 require 'gdata/http'
 require 'gdata/auth'
 
-class Docs
+class FileConvert::Docs
   def initialize(config)
     @client = GData::Client::Spreadsheets.new
-    @client.clientlogin(config['USER_NAME'], config['PASSWORD'])
+    @client.clientlogin(config.user_name, config.password)
   end
 
   def download_and_read(url)

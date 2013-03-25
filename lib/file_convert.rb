@@ -1,33 +1,38 @@
 require 'rubygems'
-require_relative 'drive'
-require_relative 'docs'
-require_relative 'bucket'
 require 'tempfile'
 
 class FileConvert
-  def initialize
-    @config ||= YAML.load_file('../config/config.yml')
-    @drive = Drive.new @config
-    @docs = Docs.new @config
-    @bucket = Bucket.new @config
+  def self.configure(&block)
+    yield(configuration)
+    configuration
   end
 
-  def convert(s3_file_key)
+  def self.configuration
+    @config ||= FileConvert::Configuration.new
+  end
+
+
+  def initialize
+    @drive = Drive.new FileConvert.configuration
+    @docs = Docs.new FileConvert.configuration
+    @bucket = Bucket.new FileConvert.configuration
+  end
+
+  def to_txt_from_s3(s3_file_key)
     s3_file = @bucket.download s3_file_key
-    convert_txt_url = @drive.get_convert_txt_url s3_file
+    convert_txt_url = @drive.get_convert_txt_url s3_file.path
     @docs.download_and_read(convert_txt_url)
   end
 
   def self.get_a_temp_file(key = '')
-    @config ||= YAML.load_file('../config/config.yml')
-    Tempfile.new(['file_convert', key], @config['TMP_FOLDER'])
+    Tempfile.new(['file_convert', key], configuration.tmp_folder)
   end
 end
 
-converter = FileConvert.new
-puts converter.convert 'L5sjwgzRomh85km8J7S7_My Resume (1).docx'
-
-
+require 'file_convert/drive'
+require 'file_convert/docs'
+require 'file_convert/bucket'
+require 'file_convert/configuration'
 
 
 
