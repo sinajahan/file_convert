@@ -26,7 +26,7 @@ class FileConvert::Drive
 
     # Exchange authorization code for access token
     $stdout.write 'Enter authorization code: '
-    @client.authorization.code = gets.chomp
+    @client.authorization.code = $stdin.gets.chomp
     @client.authorization.fetch_access_token!
   end
 

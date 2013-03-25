@@ -1,6 +1,7 @@
 Gem::Specification.new do |s|
   s.name        = 'file_convert'
-  s.version     = '0.0.0'
+  s.version     = '0.0.1'
+  s.executables << 'file_convert'
   s.date        = '2013-03-18'
   s.summary     = 'convert files to different formats'
   s.description     = 'wrapper around google drive to convert files to different formats'

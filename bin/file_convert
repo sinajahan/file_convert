@@ -1,0 +1,26 @@
+#!/usr/bin/env ruby
+
+require 'file_convert'
+require 'yaml'
+
+puts 'Usage: file_convert config.yml file.doc'
+
+@configurations ||= YAML.load_file(ARGV[0])
+
+puts @configurations.inspect
+
+FileConvert.configure do |config|
+  config.client_id = @configurations['CLIENT_ID']
+  config.client_secret = @configurations['CLIENT_SECRET']
+  config.oauth_scope = @configurations['OAUTH_SCOPE']
+  config.redirect_uri = @configurations['REDIRECT_URI']
+  config.user_name = @configurations['USER_NAME']
+  config.password = @configurations['PASSWORD']
+  config.s3_key = @configurations['S3_KEY']
+  config.s3_secret = @configurations['S3_SECRET']
+  config.s3_bucket = @configurations['S3_BUCKET']
+  config.tmp_folder = @configurations['TMP_FOLDER']
+end
+
+converter = FileConvert.new
+puts converter.to_txt_from_s3 ARGV[1]
