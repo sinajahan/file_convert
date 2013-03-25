@@ -30,7 +30,7 @@ class Drive
     @client.authorization.fetch_access_token!
   end
 
-  def txt_url(file_path)
+  def get_convert_txt_url(file_path)
     # Insert a file
     file = @drive.files.insert.request_schema.new({
                                                     title: file_path,

@@ -12,5 +12,6 @@ Gem::Specification.new do |s|
   s.add_dependency('google-api-client', '~> 0.6.2')
   s.add_dependency('mime-types', '~> 1.21')
   s.add_dependency('gdata', '~> 1.1.2')
+  s.add_dependency('aws-s3', '~> 0.6.3')
   s.add_development_dependency('rspec')
 end
