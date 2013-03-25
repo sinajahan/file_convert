@@ -8,7 +8,7 @@ class Docs
     @client.clientlogin(config['USER_NAME'], config['PASSWORD'])
   end
 
-  def download(url)
+  def download_and_read(url)
     temp_file = FileConvert.get_a_temp_file
     content = @client.get(url)
     File.open(temp_file, 'w') { |file| file.write(content.body) }

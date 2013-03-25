@@ -31,44 +31,42 @@ class Drive
   end
 
   def get_convert_txt_url(file_path)
-    # Insert a file
-    file = @drive.files.insert.request_schema.new({
-                                                    title: file_path,
-                                                    description: 'A test resume document',
-                                                  })
+    begin
+      file = @drive.files.insert.request_schema.new({
+                                                      title: file_path,
+                                                      description: 'A test resume document',
+                                                    })
 
-    mime = MIME::Types.type_for(file_path).first.to_s
-    media = Google::APIClient::UploadIO.new(file_path, mime)
+      mime = MIME::Types.type_for(file_path).first.to_s
+      media = Google::APIClient::UploadIO.new(file_path, mime)
 
-    needs_ocr = mime == 'application/pdf'
+      needs_ocr = mime == 'application/pdf'
 
-    result = @client.execute(
-      :api_method => @drive.files.insert,
-      :body_object => file,
-      :media => media,
-      :parameters => {
-        'uploadType' => 'multipart',
-        convert: true,
-        ocr: (true if needs_ocr),
-        ocrLanguage: (:en if needs_ocr),
-        useContentAsIndexableText: (true if needs_ocr),
-        'alt' => 'json'}.reject{ |k,v| v.nil? })
+      result = @client.execute(
+        :api_method => @drive.files.insert,
+        :body_object => file,
+        :media => media,
+        :parameters => {
+          'uploadType' => 'multipart',
+          convert: true,
+          ocr: (true if needs_ocr),
+          ocrLanguage: (:en if needs_ocr),
+          useContentAsIndexableText: (true if needs_ocr),
+          'alt' => 'json'}.reject{ |k,v| v.nil? })
 
-    # Pretty print the API result
-    jj result.data.to_hash
+      # Pretty print the API result
+      jj result.data.to_hash
 
-    file_id = result.data.id
+      file_id = result.data.id
 
-    result = @client.execute(
-      :api_method => @drive.files.get,
-      :parameters => {'fileId' => file_id})
+      result = @client.execute(
+        :api_method => @drive.files.get,
+        :parameters => {'fileId' => file_id})
 
-    if result.status == 200
       result.data.export_links['text/plain']
-    else
-      puts "An error occurred: #{result.data['error']['message']}"
+    rescue
+      raise "failed to upload file to google drive #{result.data.inspect}"
     end
-
   end
 
 end

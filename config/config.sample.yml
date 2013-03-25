@@ -3,3 +3,13 @@ CLIENT_ID: '***'
 CLIENT_SECRET: '***'
 OAUTH_SCOPE: 'https://www.googleapis.com/auth/drive'
 REDIRECT_URI: 'urn:ietf:wg:oauth:2.0:oob'
+
+# Your google account
+USER_NAME: '***@***.com'
+PASSWORD: 'password'
+
+S3_KEY: ***
+S3_SECRET: ***
+S3_BUCKET: www
+
+TMP_FOLDER: '/tmp/'

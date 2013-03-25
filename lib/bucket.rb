@@ -1,12 +1,12 @@
 require 'aws/s3'
 
-
 class Bucket
   def initialize(config)
     AWS::S3::Base.establish_connection!(
       access_key_id: config['S3_KEY'],
       secret_access_key: config['S3_SECRET']
     )
+
     @bucket = AWS::S3::Bucket.find('clearfit-thumbnails-development')
   end
 
