@@ -4,8 +4,7 @@ require 'yaml'
 require 'mime/types'
 
 class Drive
-  def initialize
-    config = YAML.load_file('../config/config.yml')
+  def initialize(config)
     # Get your credentials from the APIs Console
     client_id = config['CLIENT_ID']
     client_secret = config['CLIENT_SECRET']
