@@ -4,7 +4,7 @@ $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 
 Gem::Specification.new do |s|
   s.name        = 'file_convert'
-  s.version     = '0.0.2'
+  s.version     = '0.0.3'
   s.executables << 'file_convert'
   s.date        = '2013-03-18'
   s.summary     = 'convert files to different formats'
@@ -21,7 +21,6 @@ Gem::Specification.new do |s|
 
   s.add_dependency('google-api-client', '~> 0.6.2')
   s.add_dependency('mime-types', '~> 1.21')
-  s.add_dependency('gdata', '~> 1.1.2')
   s.add_dependency('aws-s3', '~> 0.6.3')
 
   s.add_development_dependency('rspec')

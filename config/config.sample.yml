@@ -1,12 +1,7 @@
 # Get your credentials from the APIs Console
-CLIENT_ID: '***'
-CLIENT_SECRET: '***'
-OAUTH_SCOPE: 'https://www.googleapis.com/auth/drive'
-REDIRECT_URI: 'urn:ietf:wg:oauth:2.0:oob'
+DRIVE_KEY_PATH: '***.p12'
+DRIVE_SERVICE_ACCOUNT: '***@developer.gserviceaccount.com'
 
-# Your google account
-USER_NAME: '***@***.com'
-PASSWORD: 'password'
 
 S3_KEY: ***
 S3_SECRET: ***

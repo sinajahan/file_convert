@@ -2,7 +2,6 @@ require 'rubygems'
 require 'tempfile'
 
 require 'file_convert/drive'
-require 'file_convert/docs'
 require 'file_convert/bucket'
 require 'file_convert/configuration'
 
@@ -20,14 +19,12 @@ module FileConvert
 
     def initialize
       @drive = Drive.new Converter.configuration
-      @docs = Docs.new Converter.configuration
       @bucket = Bucket.new Converter.configuration
     end
 
     def to_txt_from_s3(s3_file_key)
       s3_file = @bucket.download s3_file_key
-      convert_txt_url = @drive.get_convert_txt_url s3_file.path
-      @docs.download_and_read(convert_txt_url)
+      @drive.get_txt s3_file.path
     end
 
     def self.get_a_temp_file(key = '')
