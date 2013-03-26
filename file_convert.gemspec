@@ -1,3 +1,7 @@
+# coding: utf-8
+lib = File.expand_path('../lib', __FILE__)
+$LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
+
 Gem::Specification.new do |s|
   s.name        = 'file_convert'
   s.version     = '0.0.2'
@@ -7,12 +11,18 @@ Gem::Specification.new do |s|
   s.description     = 'wrapper around google drive to convert files to different formats'
   s.authors     = ['Sina Jahan']
   s.email       = 'info@sinajahan.com'
-  s.files       = %w(lib/file_convert.rb)
-  s.homepage    =
-    'http://rubygems.org/gems/file_convert'
+
+  s.files         = `git ls-files`.split($/)
+  s.executables   = s.files.grep(%r{^bin/}) { |f| File.basename(f) }
+  s.test_files    = s.files.grep(%r{^(test|spec|features)/})
+  s.require_paths = ['lib']
+
+  s.homepage    = 'http://rubygems.org/gems/file_convert'
+
   s.add_dependency('google-api-client', '~> 0.6.2')
   s.add_dependency('mime-types', '~> 1.21')
   s.add_dependency('gdata', '~> 1.1.2')
   s.add_dependency('aws-s3', '~> 0.6.3')
+
   s.add_development_dependency('rspec')
 end
