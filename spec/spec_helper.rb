@@ -1,11 +1,7 @@
 require 'rubygems'
 require 'bundler/setup'
 
-require 'file_convert' # and any other gems you need
-
-#"#{RSpec.configure do |config|
-  # some (optional) config here
-#end
+require 'file_convert'
 
 def load_config
   config_values ||= YAML.load_file('./config/config.yml')
@@ -40,7 +36,7 @@ def upload_fixtures_to_s3
 end
 
 def remove_fixtures_from_s3
-  AWS::S3::S3Object.delete(@doc, @configuration[:s3_bucket_name])
-  AWS::S3::S3Object.delete(@docx, @configuration[:s3_bucket_name])
-  AWS::S3::S3Object.delete(@pdf, @configuration[:s3_bucket_name])
+  AWS::S3::S3Object.store(@doc, open(@doc_path), @configuration[:s3_bucket_name])
+  AWS::S3::S3Object.store(@docx, open(@docx_path), @configuration[:s3_bucket_name])
+  AWS::S3::S3Object.store(@pdf, open(@pdf_path), @configuration[:s3_bucket_name])
 end
