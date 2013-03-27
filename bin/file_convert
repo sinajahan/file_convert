@@ -7,14 +7,14 @@ puts 'Usage: file_convert config.yml file.doc'
 
 @configurations ||= YAML.load_file(ARGV[0])
 
-FileConvert::Converter.configure do |config|
-  config.drive_key_path = @configurations['DRIVE_KEY_PATH']
-  config.drive_service_account = @configurations['DRIVE_SERVICE_ACCOUNT']
-  config.s3_key = @configurations['S3_KEY']
-  config.s3_secret = @configurations['S3_SECRET']
-  config.s3_bucket = @configurations['S3_BUCKET']
-  config.tmp_folder = @configurations['TMP_FOLDER']
-end
+params = {
+  drive_key_path: @configurations['DRIVE_KEY_PATH'],
+  drive_service_account: @configurations['DRIVE_SERVICE_ACCOUNT'],
+  s3_key: @configurations['S3_KEY'],
+  s3_secret: @configurations['S3_SECRET'],
+  s3_bucket_name: @configurations['S3_BUCKET'],
+  system_folder: @configurations['TMP_FOLDER']
+}
 
-converter = FileConvert::Converter.new
+converter = FileConvert::Converter.new params
 puts converter.to_txt_from_s3 ARGV[1]

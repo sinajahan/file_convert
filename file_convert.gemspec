@@ -4,7 +4,7 @@ $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 
 Gem::Specification.new do |s|
   s.name        = 'file_convert'
-  s.version     = '0.0.3'
+  s.version     = '0.0.4'
   s.executables << 'file_convert'
   s.date        = '2013-03-18'
   s.summary     = 'convert files to different formats'
