@@ -13,10 +13,19 @@ module FileConvert
     def get_txt(file_path)
       file_id = upload file_path
       txt_url = get_txt_url file_id
-      download txt_url
+      content = download txt_url
+      delete_file file_id
+      content
     end
 
     private
+
+    def delete_file(file_id)
+      result = @client.execute(
+        :api_method => @drive.files.delete,
+        :parameters => { 'fileId' => file_id })
+      raise "Failed to delete the file #{file_id} from google drive #{result.data['error']['message']}" unless result.status == 204
+    end
 
     def create_client(key_path, service_account)
       key = Google::APIClient::PKCS12.load_key(key_path, 'notasecret')
