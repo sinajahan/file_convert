@@ -1,0 +1,140 @@
+﻿Julien Boutoille
+	Citizenship : French ▪ Date of birth : 14 July 1789
+	
+
+	
+
+Contact
+	Tel : 000-0000-0000
+e-mail : my.address@domain.com
+	
+
+	
+
+Address
+	Petit maison blanche, 367 avenue de la fraise, 1er etage, 62219 Paris, FRANCE
+	
+
+	
+
+	
+
+Profile
+	
+
+Objective
+	I am seeking a position within the Information Technology department, possibly with an international perspective (special interest in Western Europe, North America and Japan).
+	Availability
+	From October, 2015
+	
+
+	
+
+	
+
+	
+
+Key Skills
+	Proficient or familiar with a vast array of programming languages, concepts and technologies, including:
+.NET Framework (C#)
+	ASP.Net AJAX Toolkit
+	Windows, UNIX, BSD
+	Mono, GTK#, C UNIX
+	Perl, PHP, JavaScript
+	SQL Server, MySQL
+	PostgreSQL, Oracle
+	Network fundamentals
+	
+
+	
+
+	
+
+	
+
+Education
+	
+
+2005 to 2007
+	Master in Information Technology (September 2007) - “Expert Informatique”
+SCHOOL NAME, Institute of New Technologies, Paris
+	2003 to 2005
+	Bachelor in Information Technology
+SCHOOL NAME, Institute of New Technologies, Paris
+	2001 to 2003
+	2-years-specialized diploma in business data processing - “BTS Informatique”
+SCHOOL NAME, School of Computer Sciences, Lille, France
+	
+
+	
+
+	
+
+	
+
+Work Experience
+	
+
+Bidule Corporation, Yokohama
+	Internship
+	Software Analyst (V-model, CMMI, JS, Perl)
+	March to August, 2007
+	1. Recently started an analysis about the existing Content Management System;
+	
+
+	Net Anxious, Paris
+	Part-time job
+	Web Developer (PHP, JS, Perl, MySQL)
+	May to December, 2006
+	1. Maintained existing websites; Implemented new functionalities;
+2. Conducted the migration of an old MS Access application into a PHP/JavaScript version;
+3. Restructured a large PERL program; Wrote technical documentations;
+	
+
+	Book Publisher, Tokyo
+	Internship
+	Project Manager (PHP, JS, Perl, PgSQL, Linux)
+	June to October, 2005
+	1. Designed, implemented and tested Intranet software; 
+2. Trained the employees; Wrote a system restoration manual;
+3. Installed network appliances such a printer or router;
+	
+
+	Little Company, Lille, France
+	Internship
+	Computer Programmer (Delphi)
+	November to December, 2002
+	1. Developed a Rich Text Format (RVF) editor for internal use;
+	
+
+	
+
+	
+
+	
+
+	
+
+Activities and Interests
+	
+
+Internet
+	Personal ASP.Net project: www.zojabnezjebzelbazlbzbe.com (under construction)
+	Automobile
+	Cars in general, sports cars, racing
+	Traveling
+	France, England, Belgium, Italy, Japan
+	
+
+	
+
+	
+
+	
+
+Languages
+	
+
+French (native)
+	English (fluent, TOEIC 900)
+	Japanese (basic, JLPT 4th level)
