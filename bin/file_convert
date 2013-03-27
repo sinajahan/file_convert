@@ -13,7 +13,7 @@ params = {
   s3_key: @configurations['S3_KEY'],
   s3_secret: @configurations['S3_SECRET'],
   s3_bucket_name: @configurations['S3_BUCKET'],
-  system_folder: @configurations['TMP_FOLDER']
+  system_folder: @configurations['SYSTEM_FOLDER']
 }
 
 converter = FileConvert::Converter.new params

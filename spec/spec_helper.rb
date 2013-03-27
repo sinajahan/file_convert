@@ -12,7 +12,7 @@ def load_config
     s3_key: config_values['S3_KEY'],
     s3_secret: config_values['S3_SECRET'],
     s3_bucket_name: config_values['S3_BUCKET'],
-    system_folder: config_values['TMP_FOLDER']
+    system_folder: config_values['SYSTEM_FOLDER']
   }
 end
 
