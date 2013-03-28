@@ -17,4 +17,4 @@ params = {
 }
 
 converter = FileConvert::Converter.new params
-puts converter.to_txt_from_s3 ARGV[1]
+puts converter.to_txt ARGV[1]
