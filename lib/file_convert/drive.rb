@@ -24,7 +24,8 @@ module FileConvert
       result = @client.execute(
         :api_method => @drive.files.delete,
         :parameters => { 'fileId' => file_id })
-      raise "Failed to delete the file #{file_id} from google drive #{result.data['error']['message']}" unless result.status == 204
+      raise TransientError,
+            "Failed to delete the file #{file_id} from google drive #{result.data['error']['message']}" unless result.status == 204
     end
 
     def create_client(key_path, service_account)
@@ -38,7 +39,8 @@ module FileConvert
 
     def download(url)
       result = @client.execute(:uri => url)
-      raise "Failed to download #{url}" unless result.status == 200
+      raise TransientError,
+            "Failed to download #{url}" unless result.status == 200
       result.body
     end
 
@@ -47,8 +49,10 @@ module FileConvert
         :api_method => @drive.files.get,
         :parameters => {'fileId' => file_id})
 
-      raise "Failed to get file metadata: #{result.data['error']['message']}" unless result.status == 200
-      raise "Failed to convert correctly #{file_id}" unless result.data.export_links
+      raise TransientError,
+            "Failed to get file metadata: #{result.data['error']['message']}" unless result.status == 200
+      raise TransientError,
+            "Failed to convert correctly #{file_id}" unless result.data.export_links
 
       result.data.export_links['text/plain']
     end
@@ -77,7 +81,8 @@ module FileConvert
 
       result = @client.execute(execute_params)
 
-      raise "Failed to upload #{file_path} to google drive: #{result.data['error']['message']}" unless result.status == 200
+      raise TransientError,
+            "Failed to upload #{file_path} to google drive: #{result.data['error']['message']}" unless result.status == 200
       result.data.id
     end
   end

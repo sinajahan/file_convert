@@ -3,6 +3,7 @@ require 'tempfile'
 
 require 'file_convert/drive'
 require 'file_convert/bucket'
+require 'file_convert/exception'
 
 module FileConvert
   class Converter
