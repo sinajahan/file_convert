@@ -36,7 +36,7 @@ def upload_fixtures_to_s3
 end
 
 def remove_fixtures_from_s3
-  AWS::S3::S3Object.store(@doc, open(@doc_path), @configuration[:s3_bucket_name])
-  AWS::S3::S3Object.store(@docx, open(@docx_path), @configuration[:s3_bucket_name])
-  AWS::S3::S3Object.store(@pdf, open(@pdf_path), @configuration[:s3_bucket_name])
+  AWS::S3::S3Object.delete(@doc, @configuration[:s3_bucket_name])
+  AWS::S3::S3Object.delete(@docx, @configuration[:s3_bucket_name])
+  AWS::S3::S3Object.delete(@pdf, @configuration[:s3_bucket_name])
 end

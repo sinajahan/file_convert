@@ -15,7 +15,7 @@ module FileConvert
       temp_file = get_a_temp_file key
       file_with_key = @bucket[key]
       raise UserError, "There is no file with the key [#{key}]" if file_with_key.nil?
-      File.open(temp_file, 'w') { |file| file.write(file_with_key.value) }
+      File.open(temp_file, 'w') { |file| file.write(file_with_key.value.force_encoding('UTF-8')) }
       temp_file
     end
 

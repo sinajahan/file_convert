@@ -23,4 +23,8 @@ describe FileConvert do
       doc.force_encoding('UTF-8').should == expected
     end
   end
+
+  after(:all) do
+    remove_fixtures_from_s3
+  end
 end
