@@ -20,9 +20,11 @@ def set_fixture_file_names
   @doc = 'james.doc'
   @docx = 'justin.docx'
   @pdf = 'jane.pdf'
+  @txt = 'jack.txt'
   @doc_path = "./spec/fixtures/#{@doc}"
   @docx_path = "./spec/fixtures/#{@docx}"
   @pdf_path = "./spec/fixtures/#{@pdf}"
+  @txt_path = "./spec/fixtures/#{@txt}"
 end
 
 
@@ -33,10 +35,12 @@ def upload_fixtures_to_s3
   AWS::S3::S3Object.store(@doc, open(@doc_path), @configuration[:s3_bucket_name])
   AWS::S3::S3Object.store(@docx, open(@docx_path), @configuration[:s3_bucket_name])
   AWS::S3::S3Object.store(@pdf, open(@pdf_path), @configuration[:s3_bucket_name])
+  AWS::S3::S3Object.store(@txt, open(@txt_path), @configuration[:s3_bucket_name])
 end
 
 def remove_fixtures_from_s3
   AWS::S3::S3Object.delete(@doc, @configuration[:s3_bucket_name])
   AWS::S3::S3Object.delete(@docx, @configuration[:s3_bucket_name])
   AWS::S3::S3Object.delete(@pdf, @configuration[:s3_bucket_name])
+  AWS::S3::S3Object.delete(@txt, @configuration[:s3_bucket_name])
 end

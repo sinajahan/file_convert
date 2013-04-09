@@ -22,6 +22,12 @@ describe FileConvert do
       expected = IO.read('./spec/fixtures/james.txt')
       doc.force_encoding('UTF-8').should == expected
     end
+
+    it 'from a text file' do
+      doc = @converter.to_txt_from_s3 'jack.txt'
+      expected = IO.read('./spec/fixtures/jack.txt')
+      doc.force_encoding('UTF-8').should == expected
+    end
   end
 
   after(:all) do

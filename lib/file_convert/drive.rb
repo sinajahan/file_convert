@@ -11,6 +11,8 @@ module FileConvert
     end
 
     def get_txt(file_path)
+      mime_type = MIME::Types.type_for(file_path).first.to_s
+      return IO.read file_path if mime_type == 'text/plain'
       file_id = upload file_path
       txt_url = get_txt_url file_id
       content = download txt_url
