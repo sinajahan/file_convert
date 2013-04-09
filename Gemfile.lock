@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    file_convert (0.0.7)
+    file_convert (0.0.9)
       aws-s3 (~> 0.6.3)
       google-api-client (~> 0.6.2)
       mime-types (~> 1.21)
