@@ -1,3 +1,6 @@
+require 'file_convert'
+require_relative '../spec_helper'
+
 describe FileConvert do
   before(:all) do
     upload_fixtures_to_s3

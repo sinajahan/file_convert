@@ -1,5 +1,6 @@
 require 'rubygems'
 require 'bundler/setup'
+require 'pry'
 
 require 'file_convert'
 
@@ -14,9 +15,7 @@ def load_config
     s3_bucket_name: config_values['S3_BUCKET'],
     system_folder: config_values['SYSTEM_FOLDER']
   }
-end
 
-def set_fixture_file_names
   @doc = 'james.doc'
   @docx = 'justin.docx'
   @pdf = 'jane.pdf'
@@ -25,22 +24,30 @@ def set_fixture_file_names
   @docx_path = "./spec/fixtures/#{@docx}"
   @pdf_path = "./spec/fixtures/#{@pdf}"
   @txt_path = "./spec/fixtures/#{@txt}"
-end
 
+  s3 = AWS::S3.new(
+    :access_key_id => @configuration[:s3_key],
+    :secret_access_key => @configuration[:s3_secret])
+  @bucket = s3.buckets[@configuration[:s3_bucket_name]]
+
+  @configuration
+end
 
 def upload_fixtures_to_s3
   load_config
-  set_fixture_file_names
-  FileConvert::Bucket.new(@configuration[:s3_key], @configuration[:s3_secret], @configuration[:s3_bucket_name], @configuration[:system_folder])
-  AWS::S3::S3Object.store(@doc, open(@doc_path), @configuration[:s3_bucket_name])
-  AWS::S3::S3Object.store(@docx, open(@docx_path), @configuration[:s3_bucket_name])
-  AWS::S3::S3Object.store(@pdf, open(@pdf_path), @configuration[:s3_bucket_name])
-  AWS::S3::S3Object.store(@txt, open(@txt_path), @configuration[:s3_bucket_name])
+  obj = @bucket.objects[@doc]
+  obj.write(Pathname.new(@doc_path))
+  obj = @bucket.objects[@docx]
+  obj.write(Pathname.new(@docx_path))
+  obj = @bucket.objects[@pdf]
+  obj.write(Pathname.new(@pdf_path))
+  obj = @bucket.objects[@txt]
+  obj.write(Pathname.new(@txt_path))
 end
 
 def remove_fixtures_from_s3
-  AWS::S3::S3Object.delete(@doc, @configuration[:s3_bucket_name])
-  AWS::S3::S3Object.delete(@docx, @configuration[:s3_bucket_name])
-  AWS::S3::S3Object.delete(@pdf, @configuration[:s3_bucket_name])
-  AWS::S3::S3Object.delete(@txt, @configuration[:s3_bucket_name])
+  #AWS::S3::S3Object.delete(@doc, @configuration[:s3_bucket_name])
+  #AWS::S3::S3Object.delete(@docx, @configuration[:s3_bucket_name])
+  #AWS::S3::S3Object.delete(@pdf, @configuration[:s3_bucket_name])
+  #AWS::S3::S3Object.delete(@txt, @configuration[:s3_bucket_name])
 end
