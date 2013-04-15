@@ -8,7 +8,7 @@ describe FileConvert::Bucket do
     .and_return
     @s3_file = mock(AWS::S3::S3Object)
     AWS::S3::Bucket.should_receive(:find).with(:bucket_name).and_return(@aws_bucket)
-    @aws_bucket.should_receive(:[]).with(:key).and_return(@s3_file)
+    AWS::S3::S3Object.should_receive(:find).with(:key, :bucket_name).and_return(@s3_file)
     @temp_file = mock(Tempfile)
     Tempfile.should_receive(:new).and_return(@temp_file)
     File.should_receive(:open).and_return
