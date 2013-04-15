@@ -17,7 +17,7 @@ module FileConvert
       raise UserError, "There is no file with the key [#{key}]" if file_with_key.nil?
       File.open(temp_file, 'w') do |file|
         file_with_key.read do |chunk|
-          file.write(chunk)
+          file.write(chunk.force_encoding('UTF-8'))
         end
       end
       temp_file
