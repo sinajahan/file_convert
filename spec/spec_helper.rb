@@ -46,8 +46,12 @@ def upload_fixtures_to_s3
 end
 
 def remove_fixtures_from_s3
-  #AWS::S3::S3Object.delete(@doc, @configuration[:s3_bucket_name])
-  #AWS::S3::S3Object.delete(@docx, @configuration[:s3_bucket_name])
-  #AWS::S3::S3Object.delete(@pdf, @configuration[:s3_bucket_name])
-  #AWS::S3::S3Object.delete(@txt, @configuration[:s3_bucket_name])
+  obj = @bucket.objects[@doc]
+  obj.delete
+  obj = @bucket.objects[@docx]
+  obj.delete
+  obj = @bucket.objects[@pdf]
+  obj.delete
+  obj = @bucket.objects[@txt]
+  obj.delete
 end
