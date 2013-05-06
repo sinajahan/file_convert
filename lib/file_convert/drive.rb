@@ -23,7 +23,7 @@ module FileConvert
     private
 
     def get_google_drive_account
-      config_values ||= YAML.load_file('./config/config.yml')
+      config_values ||= YAML.load_file('./config/drive.yml')
 
       {key_path: File.join(File.dirname(File.expand_path(__FILE__)),
                            config_values['DRIVE_KEY_PATH']),
