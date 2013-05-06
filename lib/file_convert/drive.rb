@@ -5,8 +5,8 @@ require 'mime/types'
 
 module FileConvert
   class Drive
-    def initialize(key_path, service_account)
-      create_client(key_path, service_account)
+    def initialize
+      create_client
       @drive = @client.discovered_api('drive', 'v2')
     end
 
@@ -22,6 +22,15 @@ module FileConvert
 
     private
 
+    def get_google_drive_account
+      config_values ||= YAML.load_file('./config/config.yml')
+
+      {key_path: File.join(File.dirname(File.expand_path(__FILE__)),
+                           config_values['DRIVE_KEY_PATH']),
+       service_account: config_values['DRIVE_SERVICE_ACCOUNT']
+      }
+    end
+
     def delete_file(file_id)
       result = @client.execute(
         :api_method => @drive.files.delete,
@@ -30,9 +39,10 @@ module FileConvert
             "Failed to delete the file #{file_id} from google drive #{result.data['error']['message']}" unless result.status == 204
     end
 
-    def create_client(key_path, service_account)
-      key = Google::APIClient::PKCS12.load_key(key_path, 'notasecret')
-      asserter = Google::APIClient::JWTAsserter.new(service_account,
+    def create_client
+      account_details = get_google_drive_account
+      key = Google::APIClient::PKCS12.load_key(account_details[:key_path], 'notasecret')
+      asserter = Google::APIClient::JWTAsserter.new(account_details[:service_account],
                                                     'https://www.googleapis.com/auth/drive', key)
       @client = Google::APIClient.new
       @client.authorization = asserter.authorize()

@@ -8,8 +8,6 @@ def load_config
   config_values ||= YAML.load_file('./config/config.yml')
 
   @configuration = {
-    drive_key_path: config_values['DRIVE_KEY_PATH'],
-    drive_service_account: config_values['DRIVE_SERVICE_ACCOUNT'],
     s3_key: config_values['S3_KEY'],
     s3_secret: config_values['S3_SECRET'],
     s3_bucket_name: config_values['S3_BUCKET'],

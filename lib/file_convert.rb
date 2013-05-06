@@ -8,7 +8,7 @@ require 'file_convert/exception'
 module FileConvert
   class Converter
     def initialize(params)
-      @drive = Drive.new(params[:drive_key_path], params[:drive_service_account])
+      @drive = Drive.new
       @bucket = Bucket.new(params[:s3_key], params[:s3_secret], params[:s3_bucket_name], params[:system_folder])
     end
 

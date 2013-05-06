@@ -4,9 +4,9 @@ $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 
 Gem::Specification.new do |s|
   s.name        = 'file_convert'
-  s.version     = '0.0.11'
+  s.version     = '0.0.14'
   s.executables << 'file_convert'
-  s.date        = '2013-03-18'
+  s.date        = '2013-05-05'
   s.summary     = 'convert files to different formats'
   s.description     = 'wrapper around google drive to convert files to different formats'
   s.authors     = ['Sina Jahan']
