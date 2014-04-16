@@ -3,6 +3,8 @@ File Convert
 
 A gem that is a wrapper around google drive to convert files to different formats.
 
+Update: Google has changed its api as of April 2014 and this gem does not work any more.
+
 Dependency
 ----------
 * Google drive API
